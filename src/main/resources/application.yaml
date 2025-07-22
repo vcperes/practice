@@ -1,6 +1,10 @@
 spring:
   application:
-    name: app
+    name: practice
+  security:
+    user:
+      name: admin
+      password: admin
   datasource:
     url: jdbc:h2:mem:db
     username: sa
@@ -8,6 +12,12 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
 logging:
   level:
     ROOT: INFO
+server:
+  servlet:
+    context-path: /practice

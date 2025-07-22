@@ -2,21 +2,26 @@ package com.vitor.app.document;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
-@RestController
-@RequestMapping("/document")
+@Controller
 public class DocumentController {
 
     @Autowired
     private DocumentService documentService;
 
     @GetMapping
-    public ResponseEntity<DocumentDTO> document(){
-        return ResponseEntity.ok(documentService.document());
+    public String showCodeView(Model model) throws IOException {
+        log.info("Retrieving full source-code from Practice Repository");
+        Map<String, String> codeFiles = documentService.document();
+        model.addAttribute("codeFiles", codeFiles);
+        log.info("Here ya go! :)");
+        return "code-viewer";
     }
 }
