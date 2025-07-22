@@ -19,9 +19,11 @@ public class DocumentController {
     @GetMapping
     public String showCodeView(Model model) throws IOException {
         log.info("Retrieving full source-code from Practice Repository");
+
         Map<String, String> codeFiles = documentService.document();
         model.addAttribute("codeFiles", codeFiles);
-        log.info("Here ya go! :)");
+
+        log.info("Source-code generated at view");
         return "code-viewer";
     }
 }

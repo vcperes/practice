@@ -61,9 +61,9 @@ public class SynchronizedTest {
     @DisplayName("Should print a string concurrently")
     void test04() throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(3);
-        IntStream.range(0, 3)
+        IntStream.range(0, 1000)
                         .forEach(count -> executor.submit(new Task()));
-        executor.awaitTermination( 20l, TimeUnit.NANOSECONDS );
+        executor.awaitTermination(100, TimeUnit.MILLISECONDS);
         assertThat(Task.class).isAssignableTo(Runnable.class);
 
     }

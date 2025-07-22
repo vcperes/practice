@@ -3,70 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Viewer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <title>Code Viewer - Dracula Purple</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <style>
         :root {
-            --color-bg: #F8F9FA;
-            --color-window-bg: #FFFFFF;
-            --color-header: #6C757D;
-            --color-accent: #A5D8FF;
-            --color-text: #495057;
-            --color-border: #E9ECEF;
+            --color-bg: #282a36;
+            --color-window-bg: #343746;
+            --color-header: #383a4a;
+            --color-accent: #bd93f9;
+            --color-text: #f8f8f2;
+            --color-border: #44475a;
+            --color-scrollbar: #6272a4;
+            --color-scrollbar-hover: #bd93f9;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
             margin: 0;
-            padding: 20px;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 24px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .code-window {
             background: var(--color-window-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            transition: transform 0.15s ease;
+            border: 1px solid var(--color-border);
         }
 
         .window-header {
             background: var(--color-header);
-            color: white;
+            color: var(--color-accent);
             padding: 12px 16px;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 500;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
         }
 
         .code-content {
             padding: 16px;
-            font-family: 'Consolas', 'Monaco', monospace;
+            font-family: 'Cascadia Code', 'Consolas', 'Monaco', monospace;
             font-size: 13px;
-            line-height: 1.5;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
             white-space: pre;
-            overflow-x: auto;
-            background: #F8F9FA;
+            overflow: auto;
+            background: var(--color-window-bg);
             border-left: 4px solid var(--color-accent);
             margin: 0;
             max-height: 500px;
-            overflow-y: auto;
+            color: var(--color-text);
+
+            /* Scrollbar unificada */
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-scrollbar) var(--color-header);
         }
 
-        /* Syntax Highlighting (opcional) */
-        .keyword { color: #D6336C; }
-        .type { color: #1C7ED6; }
-        .string { color: #37B24D; }
+        /* Scrollbar unificada - WebKit */
+        .code-content::-webkit-scrollbar {
+            width: 10px;  /* Largura para vertical */
+            height: 10px; /* Altura para horizontal */
+        }
+
+        .code-content::-webkit-scrollbar-track {
+            background: var(--color-header);
+            border-radius: 5px;
+        }
+
+        .code-content::-webkit-scrollbar-thumb {
+            background-color: var(--color-scrollbar);
+            border-radius: 5px;
+            border: 2px solid var(--color-header);
+        }
+
+        .code-content::-webkit-scrollbar-thumb:hover {
+            background: var(--color-scrollbar-hover);
+        }
+
+        /* Firefox */
+        @supports (scrollbar-color: red blue) {
+            .code-content {
+                scrollbar-color: var(--color-scrollbar) var(--color-header);
+                scrollbar-width: thin;
+            }
+        }
+
+        pre, code {
+            text-shadow: 0 0 0.5px rgba(255, 255, 255, 0.1);
+            margin: 0;
+        }
+
+        .hljs {
+            background: transparent !important;
+            padding: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -74,8 +122,13 @@
     <div class="code-window" th:each="entry : ${codeFiles}">
         <div class="window-header">
             <span th:text="${entry.key}">Caminho/Arquivo.java</span>
+            <div class="window-actions">
+                <span style="color: #ff5555">●</span>
+                <span style="color: #f1fa8c">●</span>
+                <span style="color: #50fa7b">●</span>
+            </div>
         </div>
-        <pre class="code-content"><code th:text="${entry.value}"></code></pre>
+        <pre class="code-content"><code class="language-java hljs" th:text="${entry.value}"></code></pre>
     </div>
 </div>
 </body>
