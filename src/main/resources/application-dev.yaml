@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: practice
+  datasource:
+    url: jdbc:h2:mem:db
+    username: ${USER_NAME}:admin
+    password: ${PASSWORD}:admin
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+logging:
+  level:
+    ROOT: INFO
+server:
+  servlet:
+    context-path: /practice
