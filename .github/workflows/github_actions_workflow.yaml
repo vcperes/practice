@@ -19,9 +19,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_SCANNER_OPTS: "-Dsonar.projectKey=practice"
         with:
           args: >
             -Dsonar.organization=vcperes
+            -Dsonar.projectKey=practice
             -Dsonar.java.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
