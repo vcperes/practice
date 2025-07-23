@@ -1,6 +1,7 @@
 package com.vitor.app.person;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "person")
 @Getter
 @Setter
+@Builder
 public class Person {
 
     @Id
