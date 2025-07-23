@@ -1,7 +1,11 @@
 name: "sonar_cloud_scan_github_actions"
 on:
   workflow_dispatch:
-
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [ opened, synchronize, reopened ]
 jobs:
   SonarCloudScanner:
     runs-on: ubuntu-latest
@@ -19,3 +23,4 @@ jobs:
             -Dsonar.organization=vcperes
             -Dsonar.projectKey=practice
             -Dsonar.java.coverage.reportPaths=coverage.xml
+            -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
