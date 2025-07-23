@@ -10,9 +10,10 @@ jobs:
   SonarCloudScanner:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GIT_TOKEN }}
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -21,6 +22,5 @@ jobs:
         with:
           args: >
             -Dsonar.organization=vcperes
-            -Dsonar.projectKey=practice
             -Dsonar.java.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
