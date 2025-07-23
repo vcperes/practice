@@ -24,7 +24,7 @@ jobs:
           args: >
             -Dsonar.organization=vcperes
             -Dsonar.projectKey=vcperes
-            -Dsonar.java.binaries=target/classes
+            -Dsonar.java.binaries=target/classes/**
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.java.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
