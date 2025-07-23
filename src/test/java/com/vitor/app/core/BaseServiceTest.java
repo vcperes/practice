@@ -59,8 +59,7 @@ public class BaseServiceTest {
     @Test
     @DisplayName("Should save a new Person")
     void scenario04(){
-        Person person = Person.builder().id(1L).name("John").build();
-        personService.save(person);
+        personService.save(Person.builder().id(1L).name("John").build());
         verify(personRepository, times(1)).save(any(Person.class));
     }
 }
