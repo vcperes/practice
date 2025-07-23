@@ -1,9 +1,12 @@
 package com.vitor.app.practice;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Task implements Runnable{
 
     @Override
     public void run() {
-        System.out.println("This class is runnable!");
+        log.info("This class {} is runnable! ", Task.class.getSimpleName());
     }
 }

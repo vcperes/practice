@@ -14,7 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class SynchronizedTest {
+class SynchronizedTest {
 
     @Test
     @DisplayName("Should sum synchronized method with int number")

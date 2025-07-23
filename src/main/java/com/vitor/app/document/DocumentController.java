@@ -1,5 +1,6 @@
 package com.vitor.app.document;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,10 @@ import java.util.Map;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class DocumentController {
 
-    @Autowired
-    private DocumentService documentService;
+    private final DocumentService documentService;
 
     @GetMapping
     public String showCodeView(Model model) throws IOException {

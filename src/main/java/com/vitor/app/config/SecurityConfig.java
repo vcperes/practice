@@ -16,7 +16,7 @@ public class SecurityConfig {
                 ).csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
-                );;
+                );
         return http.build();
     }
 }
