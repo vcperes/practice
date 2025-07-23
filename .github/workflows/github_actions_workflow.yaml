@@ -13,8 +13,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GIT_TOKEN }}
-          github-token: ${{secrets.GIT_TOKEN}}
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -24,7 +22,7 @@ jobs:
           args: >
             -Dsonar.organization=vcperes
             -Dsonar.projectKey=vcperes
-            -Dsonar.java.binaries=./target/classes
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.java.binaries=.
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
             -Dsonar.java.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
