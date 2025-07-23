@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<sonar.java.libraries>target</sonar.java.libraries>
 	</properties>
 	<dependencies>
 		<dependency>
