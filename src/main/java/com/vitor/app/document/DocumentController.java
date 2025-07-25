@@ -1,8 +1,8 @@
 package com.vitor.app.document;
 
+import com.vitor.app.core.Speed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ public class DocumentController {
     private final DocumentService documentService;
 
     @GetMapping
+    @Speed
     public String showCodeView(Model model) throws IOException {
         log.info("Retrieving full source-code from Practice Repository");
 
@@ -27,4 +28,5 @@ public class DocumentController {
         log.info("Source-code generated at view");
         return "code-viewer";
     }
+
 }

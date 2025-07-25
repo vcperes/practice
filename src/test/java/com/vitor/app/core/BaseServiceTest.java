@@ -23,7 +23,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class BaseServiceTest {
+class BaseServiceTest {
 
     @InjectMocks
     private PersonService personService;
@@ -61,5 +61,19 @@ public class BaseServiceTest {
     void scenario04(){
         personService.save(Person.builder().id(1L).name("John").build());
         verify(personRepository, times(1)).save(any(Person.class));
+    }
+
+    @Test
+    @DisplayName("Should remove a person")
+    void scenario05(){
+        personService.remove(Person.builder().id(1L).name("John").build());
+        verify(personRepository, times(1)).delete(any(Person.class));
+    }
+
+    @Test
+    @DisplayName("Should count persons")
+    void scenario06(){
+        given(personRepository.count()).willReturn(10L);
+        assertEquals(10L, personService.count());
     }
 }

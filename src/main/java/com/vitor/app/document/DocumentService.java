@@ -1,6 +1,7 @@
 package com.vitor.app.document;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.stream.Stream;
 @Service
 public class DocumentService {
 
+    @Cacheable(value = "document")
     public Map<String, String> document() throws IOException {
         log.info("Extracting code roots");
         Path[] codeRoots = {Paths.get("src/main/java"),Paths.get("src/test/java")};
