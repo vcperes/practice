@@ -24,4 +24,11 @@ class PersonControllerTest {
                 .andExpect(jsonPath("$.length()").value(100));
     }
 
+    @Test
+    @DisplayName("Should perform a get by id")
+    void scenario02() throws Exception {
+        this.mockMvc.perform(get("/person/1")).andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString().contains("name");
+    }
+
 }
