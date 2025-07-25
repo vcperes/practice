@@ -1,9 +1,4 @@
-package com.vitor.app.document;
-
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+package com.vitor.app.person;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,10 +7,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class DocumentControllerTest {
+class PersonControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -23,9 +20,8 @@ class DocumentControllerTest {
     @Test
     @DisplayName("Should perform a get for json string of full source-code")
     void scenario01() throws Exception {
-        this.mockMvc.perform(get("/")).andExpect(status().isOk())
-                .andExpect(content().string(containsString("DocumentService.java")));
+        this.mockMvc.perform(get("/person")).andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(100));
     }
-
 
 }

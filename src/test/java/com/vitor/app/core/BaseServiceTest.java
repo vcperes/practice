@@ -59,14 +59,14 @@ class BaseServiceTest {
     @Test
     @DisplayName("Should save a new Person")
     void scenario04(){
-        personService.save(Person.builder().id(1L).name("John").build());
+        personService.save(new Person());
         verify(personRepository, times(1)).save(any(Person.class));
     }
 
     @Test
     @DisplayName("Should remove a person")
     void scenario05(){
-        personService.remove(Person.builder().id(1L).name("John").build());
+        personService.remove(new Person());
         verify(personRepository, times(1)).delete(any(Person.class));
     }
 
