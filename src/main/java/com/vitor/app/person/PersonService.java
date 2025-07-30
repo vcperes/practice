@@ -2,17 +2,17 @@ package com.vitor.app.person;
 
 import com.vitor.app.core.BaseRepository;
 import com.vitor.app.core.BaseService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class PersonService extends BaseService<Person> {
+public class PersonService implements BaseService<Person> {
 
-    private final PersonRepository personRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
     @Override
-    protected BaseRepository<Person, Long> getRepository() {
+    public BaseRepository<Person, Long> getRepository() {
         return personRepository;
     }
 }

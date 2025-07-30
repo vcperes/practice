@@ -4,44 +4,37 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public abstract class BaseService<T> implements IBaseService<T> {
+@FunctionalInterface
+public interface BaseService<T> {
 
-    protected abstract BaseRepository<T, Long> getRepository();
+    BaseRepository<T, Long> getRepository();
 
-    @Override
-    public T findById(Long id) {
+    default T findById(Long id) {
         return getRepository().findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    @Override
-    public List<T> findAll() {
+    default List<T> findAll() {
         return getRepository().findAll();
     }
 
-    @Override
-    public Page<T> findAllPaginated(int page, int size) {
+    default Page<T> findAllPaginated(int page, int size) {
         return getRepository().findAll(PageRequest.of(page, size));
     }
 
-    @Override
     @Transactional
-    public T save(T t) {
+    default T save(T t) {
         return getRepository().save(t);
     }
 
-    @Override
     @Transactional
-    public void remove(T t) {
+    default void remove(T t) {
         getRepository().delete(t);
     }
 
-    @Override
-    public Long count() {
+    default Long count() {
         return getRepository().count();
     }
 }

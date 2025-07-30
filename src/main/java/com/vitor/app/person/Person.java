@@ -8,7 +8,6 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "person")
 @Getter
-@Setter
 @NoArgsConstructor
 public class Person {
 
