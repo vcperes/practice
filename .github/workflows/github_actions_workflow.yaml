@@ -9,9 +9,6 @@ on:
 jobs:
   SonarCloudScanner:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: [ 'producer', 'consumer' ]
     steps:
       - uses: actions/checkout@v4
         with:
