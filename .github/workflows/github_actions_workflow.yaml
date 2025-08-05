@@ -21,7 +21,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Build with Maven
-        working-directory: ./${{ matrix.project }}
         run: mvn clean install
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -36,4 +35,3 @@ jobs:
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
             -Dsonar.java.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml
-        working-directory: ./${{ matrix.project }}
