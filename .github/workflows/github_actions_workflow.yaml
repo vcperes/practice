@@ -20,7 +20,11 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - name: Build with Maven
+      - name: Build Producer
+        working-directory: ./producer
+        run: mvn clean install
+      - name: Build Consumer
+        working-directory: ./consumer
         run: mvn clean install
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -31,6 +35,9 @@ jobs:
           args: >
             -Dsonar.organization=vcperes
             -Dsonar.projectKey=vcperes
+            -Dsonar.projectName=Practice Project
+            -Dsonar.modules=producer,consumer
+            -Dsonar.sources=src
             -Dsonar.java.binaries=.
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
             -Dsonar.java.coverage.reportPaths=coverage.xml
