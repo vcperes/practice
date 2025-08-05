@@ -26,3 +26,6 @@ logging:
 server:
   servlet:
     context-path: /practice
+topics:
+  document:
+    topic: document.topic

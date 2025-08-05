@@ -45,6 +45,10 @@
 			<version>3.5.3</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>6.2.9</version>
@@ -136,6 +140,8 @@
 				<version>3.6.0.1398</version>
 			</plugin>
 		</plugins>
+
+		<finalName>${project.artifactId}</finalName>
 	</build>
 	<profiles>
 		<profile>

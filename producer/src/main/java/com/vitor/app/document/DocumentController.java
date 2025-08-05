@@ -16,6 +16,7 @@ import java.util.Map;
 public class DocumentController {
 
     private final DocumentService documentService;
+    private final DocumentProducer documentProducer;
 
     @GetMapping
     @Speed
@@ -24,6 +25,7 @@ public class DocumentController {
 
         Map<String, String> codeFiles = documentService.document();
         model.addAttribute("codeFiles", codeFiles);
+        documentProducer.sendMessage(codeFiles);
 
         log.info("Source-code generated at view");
         return "code-viewer";
