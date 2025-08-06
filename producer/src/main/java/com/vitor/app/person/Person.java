@@ -13,6 +13,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")

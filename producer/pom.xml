@@ -9,10 +9,10 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.vitor</groupId>
-	<artifactId>app</artifactId>
+	<artifactId>producer</artifactId>
 	<version>1.0.0</version>
-	<name>PracticeProject</name>
-	<description>Aplicação teste para estudos</description>
+	<name>producer</name>
+	<description>Application for studying and practice</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -152,12 +152,6 @@
 			</activation>
 			<properties>
 				<spring.profiles.active>dev</spring.profiles.active>
-			</properties>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<spring.profiles.active>test</spring.profiles.active>
 			</properties>
 		</profile>
 	</profiles>
