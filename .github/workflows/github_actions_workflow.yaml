@@ -32,7 +32,7 @@ jobs:
           args: >
             -Dsonar.organization=vcperes
             -Dsonar.projectKey=vcperes
-            -Dsonar.projectName=Practice Project
+            -Dsonar.projectName="Practice Project"
             -Dsonar.modules=producer,consumer
             -Dsonar.sources=src
             -Dsonar.java.binaries=.
