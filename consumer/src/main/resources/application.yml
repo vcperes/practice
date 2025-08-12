@@ -1,13 +1,22 @@
 spring:
   application:
     name: consumer
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/code_db}
+    redis:
+      database: 0
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+      password: root
+      timeout: 60000
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
       group-id: document-group-1
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 topics:
   document:
     topic: document.topic

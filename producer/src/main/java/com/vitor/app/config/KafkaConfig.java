@@ -23,13 +23,13 @@ public class KafkaConfig {
     private String documentTopic;
 
     @Bean
-    public ProducerFactory<String, String> producerFactory(){
+    public ProducerFactory<String, Map<String, String>> producerFactory(){
         Map<String, Object> properties = kafkaProperties.buildProducerProperties();
         return new DefaultKafkaProducerFactory<>(properties);
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate(){
+    public KafkaTemplate<String, Map<String, String>> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Code Tree View</title>
+    <style>
+        details summary { cursor: pointer; font-weight: bold; }
+        ul { margin-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Code structure</h1>
+<div th:each="class : ${classes}">
+    <details>
+        <summary th:text="${class.className}"></summary>
+        <ul>
+            <li th:each="method : ${class.methods}" th:text="${method}"></li>
+        </ul>
+    </details>
+</div>
+</body>
+</html>

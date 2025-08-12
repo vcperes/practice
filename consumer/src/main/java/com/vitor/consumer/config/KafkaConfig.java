@@ -5,13 +5,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.core.*;
 
 import java.util.Map;
 
 @Configuration
-public class Config {
+public class KafkaConfig {
 
     @Autowired
     private KafkaProperties kafkaProperties;
@@ -20,7 +19,7 @@ public class Config {
     private String documentTopic;
 
     @Bean
-    public ConsumerFactory<String, String> consumerFactory(){
+    public ConsumerFactory<String, Map<String, String>> consumerFactory(){
         Map<String, Object> properties = kafkaProperties.buildConsumerProperties();
         return new DefaultKafkaConsumerFactory<>(properties);
     }
