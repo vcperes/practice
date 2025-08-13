@@ -1,10 +1,10 @@
-package com.vitor.consumer.document;
+package com.vitor.consumer.classcode;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.vitor.consumer.document.repository.mongo.ClassCodeMongoRepository;
-import com.vitor.consumer.document.repository.redis.ClassCodeRedisRepository;
+import com.vitor.consumer.classcode.repository.mongo.ClassCodeMongoRepository;
+import com.vitor.consumer.classcode.repository.redis.ClassCodeRedisRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class DocumentService {
+public class ClassCodeService {
 
     private final ClassCodeMongoRepository mongoRepo;
     private final ClassCodeRedisRepository redisRepo;
@@ -45,9 +45,9 @@ public class DocumentService {
         redisRepo.save(saved);
     }
 
-
     @Cacheable(value = "classcodes", unless="#result == null")
     public List<ClassCode> findAll(){
+        log.info("Redis cache empty, finding all code from MongoDB, and saving at redis");
         return mongoRepo.findAll().stream().map(c -> {
             redisRepo.save(c);
             return c;

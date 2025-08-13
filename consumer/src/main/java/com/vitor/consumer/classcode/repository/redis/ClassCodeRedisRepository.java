@@ -1,6 +1,6 @@
-package com.vitor.consumer.document.repository.redis;
+package com.vitor.consumer.classcode.repository.redis;
 
-import com.vitor.consumer.document.ClassCode;
+import com.vitor.consumer.classcode.ClassCode;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

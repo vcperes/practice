@@ -19,7 +19,7 @@ public class KafkaConfig {
     private String documentTopic;
 
     @Bean
-    public ConsumerFactory<String, Map<String, String>> consumerFactory(){
+    public ConsumerFactory<String, String> consumerFactory(){
         Map<String, Object> properties = kafkaProperties.buildConsumerProperties();
         return new DefaultKafkaConsumerFactory<>(properties);
     }

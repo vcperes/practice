@@ -1,21 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
     <title>Code Tree View</title>
     <style>
-        details summary { cursor: pointer; font-weight: bold; }
-        ul { margin-left: 20px; }
+        :root {
+            --color-bg: #282a36;
+            --color-window-bg: #343746;
+            --color-header: #383a4a;
+            --color-accent: #bd93f9;
+            --color-text: #f8f8f2;
+            --color-border: #44475a;
+            --color-scrollbar: #6272a4;
+            --color-scrollbar-hover: #bd93f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        h1 {
+            color: var(--color-accent);
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .tree-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-window-bg);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            overflow-y: auto;
+            max-height: 80vh;
+
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-scrollbar) var(--color-header);
+        }
+
+        /* Scrollbar WebKit */
+        .tree-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .tree-container::-webkit-scrollbar-track {
+            background: var(--color-header);
+            border-radius: 5px;
+        }
+
+        .tree-container::-webkit-scrollbar-thumb {
+            background-color: var(--color-scrollbar);
+            border-radius: 5px;
+            border: 2px solid var(--color-header);
+        }
+
+        .tree-container::-webkit-scrollbar-thumb:hover {
+            background: var(--color-scrollbar-hover);
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--color-accent);
+            padding: 4px 0;
+            font-family: 'Cascadia Code', 'Consolas', monospace;
+        }
+
+        ul {
+            margin: 6px 0 6px 20px;
+            padding-left: 12px;
+            list-style-type: none;
+        }
+
+        li {
+            font-family: 'Cascadia Code', 'Consolas', monospace;
+            padding: 2px 0;
+            border-left: 2px solid var(--color-border);
+            padding-left: 8px;
+            color: var(--color-text);
+        }
+
+        li:hover {
+            color: var(--color-accent);
+        }
     </style>
 </head>
 <body>
-<h1>Code structure</h1>
-<div th:each="class : ${classes}">
-    <details>
-        <summary th:text="${class.className}"></summary>
-        <ul>
-            <li th:each="method : ${class.methods}" th:text="${method}"></li>
-        </ul>
-    </details>
+<h1>Code Structure</h1>
+<div class="tree-container">
+    <div th:each="class : ${classes}">
+        <details>
+            <summary th:text="${class.className}"></summary>
+            <ul>
+                <li th:each="method : ${class.methods}" th:text="${method}"></li>
+            </ul>
+        </details>
+    </div>
 </div>
 </body>
 </html>
