@@ -17,9 +17,6 @@ docker ps -aq | xargs -r docker stop
 echo -e "${YELLOW}🧹 Removendo apenas containers (mantendo volumes nomeados)...${NC}"
 docker ps -aq | xargs -r docker rm -v --force
 
-echo -e "${YELLOW}🧹 Removendo redes não usadas...${NC}"
-docker network prune -f
-
 echo -e "${CYAN}🗑️ Removendo imagens não desejadas (mantendo: ${KEEP_IMAGES})...${NC}"
 docker images --format '{{.Repository}} {{.ID}}' \
   | grep -vE "^(${KEEP_IMAGES}) " \
